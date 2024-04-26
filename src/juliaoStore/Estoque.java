@@ -7,7 +7,7 @@ public class Estoque {
 
     //método construtor
     public Estoque(){
-        this.produtos = new ArrayList<>();
+        this.produtos = new ArrayList<Produto>();
     }
 
     //C - Create (Criar)
@@ -27,4 +27,30 @@ public class Estoque {
             }
         }
     }
+
+    // U - Update (Atualização)
+    public void atualizarProduto(String nome, int quantidade, double preco) {
+        for (Produto produto : produtos) {
+            if (produto.getNome().equals(nome)) {
+                produto.setQuantidade(quantidade);
+                produto.setPreco(preco);
+                System.out.println("O produto " + produto.getNome() + "foi atualizado com sucesso");
+            }
+        }
+        System.out.println("Produto informado não existe em estoque");
+    }
+
+    // D - Delete (Deletar)
+    public void removerProduto(String nome) {
+        for (int index = 0; index < produtos.size(); index++) {
+            Produto p = produtos.get(index);
+            if (p.getNome().equals(nome)) {
+                produtos.remove(index);
+                System.out.println("Produto removido com sucesso");
+                return;
+            }
+        }
+        System.out.println("Produto informado não existe em estoque");
+    }
 }
+
